@@ -175,3 +175,23 @@ article ul li img {
 article ul li img:hover {
   transform: scale(1.1);
 }
+
+/*--------------------------------
+----------------------------------
+|                                |
+|        EDIT DATA STYLING       |
+|                                |
+----------------------------------
+----------------------------------*/
+
+.edit {
+  width: 90%;
+}
+
+#edit-book-name,
+#edit-author-name,
+#edit-author-email,
+#edit-publish-year,
+#edit-price {
+  width: 150px;
+}

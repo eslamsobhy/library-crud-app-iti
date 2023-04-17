@@ -41,7 +41,7 @@
       <article class="display-container header">
         <ul>
           <li>Name</li>
-          <li>Publich Date</li>
+          <li>Publish Date</li>
           <li>Price</li>
           <li>Author Name</li>
           <li>Author Email</li>
@@ -86,7 +86,14 @@
           <li>Ronald Tolken</li>
           <li>ronald@hehe.com</li>
           <li>
-            <img src="./images/icons/pen-bold.svg" alt="" /><img
+            <img
+              id="edit-btn"
+              title="edit"
+              src="./images/icons/pen-bold.svg"
+              alt=""
+            /><img
+              id="delete-btn"
+              title="remove"
               src="./images/icons/trash-bold.svg"
               alt=""
             />
@@ -100,7 +107,7 @@
       <article class="display-container header">
         <ul>
           <li>Name</li>
-          <li>Publich Date</li>
+          <li>Publish Date</li>
           <li>Price</li>
           <li>Author Name</li>
           <li>Author Email</li>
@@ -109,13 +116,25 @@
       </article>
       <article class="display-container book-data">
         <ul>
-          <li>The Hobbit</li>
-          <li>1978</li>
-          <li>120$</li>
-          <li>Ronald Tolken</li>
-          <li>ronald@hehe.com</li>
+          <li><input id="edit-book-name" type="text" value="The Hobbit" /></li>
+          <li><input id="edit-publish-year" type="text" value="1978" /></li>
+          <li><input id="edit-price" type="text" value="120$" /></li>
           <li>
-            <img src="./images/icons/check-circle-bold.svg" alt="" /><img
+            <input id="edit-author-name" type="text" value="Ronald Tolken" />
+          </li>
+          <li>
+            <input id="edit-author-email" type="text" value="ronald@hehe.com" />
+          </li>
+          <li>
+            <img
+              id="confirm-edit"
+              title="confirm"
+              src="./images/icons/check-circle-bold.svg"
+              alt=""
+            />
+            <img
+              id="cancel-edit"
+              title="cancel"
               src="./images/icons/x-circle-bold.svg"
               alt=""
             />
