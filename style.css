@@ -57,7 +57,7 @@ button:hover {
   transform: translate(-50%, -50%);
 }
 
-.section:not(:first-child) {
+.section:not(:nth-child(2)) {
   display: none;
 }
 
@@ -69,6 +69,22 @@ button:hover {
   align-items: center;
 }
 
-.num-container .title {
+.title {
   font-weight: bold;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+  width: 60%;
+}
+
+.form-container .input-field {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
 }
