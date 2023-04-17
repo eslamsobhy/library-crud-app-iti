@@ -79,6 +79,7 @@ button:hover {
   align-items: center;
   row-gap: 20px;
   width: 60%;
+  padding: 60px 0;
 }
 
 .form-container .input-field {
