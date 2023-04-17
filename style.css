@@ -1,3 +1,11 @@
+/*--------------------------------
+----------------------------------
+|                                |
+|           GENERAL STYLING      |
+|                                |
+----------------------------------
+----------------------------------*/
+
 * {
   margin: 0;
   padding: 0;
@@ -57,9 +65,17 @@ button:hover {
   transform: translate(-50%, -50%);
 }
 
-.section:not(:nth-child(2)) {
+.section:not(:nth-child(3)) {
   display: none;
 }
+
+/*--------------------------------
+----------------------------------
+|                                |
+|   NUMBER OF BOOKS STYLING      |
+|                                |
+----------------------------------
+----------------------------------*/
 
 .num-container {
   width: 60%;
@@ -72,6 +88,14 @@ button:hover {
 .title {
   font-weight: bold;
 }
+
+/*--------------------------------
+----------------------------------
+|                                |
+|            FORM STYLING        |
+|                                |
+----------------------------------
+----------------------------------*/
 
 .form-container {
   display: flex;
@@ -88,4 +112,66 @@ button:hover {
   justify-content: space-between;
   gap: 10px;
   align-items: center;
+}
+
+/*--------------------------------
+----------------------------------
+|                                |
+|      DISPLAY DATA STYLING      |
+|                                |
+----------------------------------
+----------------------------------*/
+
+.header {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-weight: bold;
+  height: 50px;
+}
+
+.header ul {
+  height: 100%;
+}
+
+.display-data {
+  display: flex;
+  flex-direction: column;
+  /* row-gap: 40px; */
+  /* padding: 0 0 40px 0; */
+}
+
+.display-container ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.book-data {
+  padding: 20px 0;
+}
+
+.book-data:nth-child(even) {
+  background-color: #ddd;
+}
+
+article ul li {
+  width: 6%;
+  display: flex;
+  justify-content: center;
+}
+
+article:not(:first-child) ul li:last-child {
+  width: 70px;
+  display: flex;
+  justify-content: space-between;
+}
+
+article ul li img {
+  width: 40%;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+article ul li img:hover {
+  transform: scale(1.1);
 }
