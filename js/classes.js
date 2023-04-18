@@ -1,5 +1,5 @@
 // Array of books
-const arrayOfBooks = [];
+export const arrayOfBooks = [];
 
 // Book function constructor
 export function Book(name, price, author) {
@@ -8,7 +8,8 @@ export function Book(name, price, author) {
   this.author = author;
 }
 
-Book.prototype.insert = function (book) {
+// Static method
+Book.insert = function (book) {
   arrayOfBooks.push(book);
 };
 

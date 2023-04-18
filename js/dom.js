@@ -1,7 +1,8 @@
-import { Book, Author } from "./classes.js";
+import { Book, Author, arrayOfBooks } from "./classes.js";
 
 // Variables
 var numOfBooks = 0;
+var counter = 1;
 
 // DOM ELEMENTS
 // sections
@@ -72,6 +73,23 @@ function addBook() {
     authorEmailInput.focus();
   } else {
     authorEmailInput.style.outline = "none";
+
+    // Some DOM Manipulations
+
+    // Creating the book data & inserting it into our array of books
+    const bookAuthor = new Author(
+      authorNameInput.value,
+      authorEmailInput.value
+    );
+    const newBook = new Book(
+      bookNameInput.value,
+      bookPriceInput.value,
+      bookAuthor
+    );
+    Book.insert(newBook);
+
+    let counter;
+    console.log(arrayOfBooks);
   }
 }
 
