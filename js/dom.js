@@ -74,7 +74,9 @@ function addBook() {
   } else {
     authorEmailInput.style.outline = "none";
 
+    counter++;
     // Some DOM Manipulations
+    document.querySelector("h1 span").innerHTML = `#${counter}`;
 
     // Creating the book data & inserting it into our array of books
     const bookAuthor = new Author(
@@ -88,7 +90,48 @@ function addBook() {
     );
     Book.insert(newBook);
 
-    let counter;
+    // prepare the input fields for the next book
+    bookNameInput.value =
+      bookPriceInput.value =
+      authorNameInput.value =
+      authorEmailInput.value =
+        "";
+
+    // check if the user entered the number of books specified earlier
+    if (counter > numOfBooks) {
+      formComp.style.display = "none";
+      displayComp.style.display = "flex";
+      arrayOfBooks.forEach((book, index) => {
+        const html = `
+        <article class="display-container book-data">
+        <ul>
+          <li>${book.name}</li>
+          <li>${Math.floor(Math.random() * (2023 - 1900 + 1) + 1900)}</li>
+          <li>${book.price}$</li>
+          <li>${book.author.name}</li>
+          <li>${book.author.email}</li>
+          <li>
+            <img
+              key=${index}
+              id="edit-btn"
+              title="edit"
+              src="./images/icons/pen-bold.svg"
+              alt=""
+            /><img
+              key =${index}
+              id="delete-btn"
+              title="remove"
+              src="./images/icons/trash-bold.svg"
+              alt=""
+            />
+          </li>
+        </ul>
+      </article>
+      `;
+        displayComp.insertAdjacentHTML("beforeend", html);
+      });
+    }
+
     console.log(arrayOfBooks);
   }
 }
