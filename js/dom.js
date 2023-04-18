@@ -9,6 +9,7 @@ var counter = 1;
 const numComp = document.querySelector(".num-container");
 const formComp = document.querySelector(".form-container");
 const displayComp = document.querySelector(".display-data");
+const booksContainer = document.querySelector(".books-container");
 const editComp = document.querySelector(".edit");
 
 // inputs
@@ -26,6 +27,10 @@ const addBookBtn = document.querySelector(".add-book");
 numOfBooksInput.focus();
 
 // methods
+function recreateDOM(event) {
+  console.log("Hi From Listener #" + event.target.attributes.key.nodeValue);
+}
+
 function confirmNumOfBooks() {
   // When user enter the number of books
   if (
@@ -113,13 +118,13 @@ function addBook() {
           <li>
             <img
               key=${index}
-              id="edit-btn"
+              class="edit-btn"
               title="edit"
               src="./images/icons/pen-bold.svg"
               alt=""
             /><img
               key =${index}
-              id="delete-btn"
+              class="delete-btn"
               title="remove"
               src="./images/icons/trash-bold.svg"
               alt=""
@@ -128,11 +133,12 @@ function addBook() {
         </ul>
       </article>
       `;
-        displayComp.insertAdjacentHTML("beforeend", html);
+        booksContainer.insertAdjacentHTML("beforeend", html);
       });
     }
 
     console.log(arrayOfBooks);
+    addEventListenersToAllDisplayButtons();
   }
 }
 
@@ -144,3 +150,47 @@ numOkBtn.addEventListener("click", function () {
 addBookBtn.addEventListener("click", function () {
   addBook();
 });
+
+function addEventListenersToAllDisplayButtons() {
+  const btns = document.getElementsByClassName("delete-btn");
+  console.log(btns);
+  for (let i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function (e) {
+      recreateDOM(e);
+    });
+  }
+}
+
+// booksContainer.innerHTML = "";
+// let newArrayOfBooks = arrayOfBooks.filter(
+//   (b, i) => parseInt(e.target.attributes.key.nodeValue) !== i
+// );
+// newArrayOfBooks.forEach((book, index) => {
+//   const html = `
+//             <article class="display-container book-data">
+//                 <ul>
+//                 <li>${book.name}</li>
+//                 <li>${Math.floor(Math.random() * (2023 - 1900 + 1) + 1900)}</li>
+//                 <li>${book.price}$</li>
+//                 <li>${book.author.name}</li>
+//                 <li>${book.author.email}</li>
+//                 <li>
+//                     <img
+//                     key=${index}
+//                     class="edit-btn"
+//                     title="edit"
+//                     src="./images/icons/pen-bold.svg"
+//                     alt=""
+//                     /><img
+//                     key =${index}
+//                     class="delete-btn"
+//                     title="remove"
+//                     src="./images/icons/trash-bold.svg"
+//                     alt=""
+//                     />
+//                 </li>
+//                 </ul>
+//             </article>
+//         `;
+//   booksContainer.insertAdjacentHTML("beforeend", html);
+// });

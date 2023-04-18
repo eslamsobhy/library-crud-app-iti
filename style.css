@@ -144,6 +144,12 @@ button:hover {
   /* padding: 0 0 40px 0; */
 }
 
+.books-container {
+  border-left: 1px solid #bbb;
+  border-right: 1px solid #bbb;
+  border-bottom: 1px solid #bbb;
+}
+
 .display-container ul {
   display: flex;
   align-items: center;
