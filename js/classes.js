@@ -13,7 +13,7 @@ Book.insert = function (book) {
   arrayOfBooks.push(book);
 };
 
-Book.prototype.delete = function (id) {
+Book.delete = function (id) {
   arrayOfBooks = arrayOfBooks.filter((b) => b.id !== id);
 };
 

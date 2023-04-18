@@ -3,6 +3,7 @@ import { Book, Author, arrayOfBooks } from "./classes.js";
 // Variables
 var numOfBooks = 0;
 var counter = 1;
+var newArrayOfBooks = arrayOfBooks;
 
 // DOM ELEMENTS
 // sections
@@ -28,7 +29,45 @@ numOfBooksInput.focus();
 
 // methods
 function recreateDOM(event) {
-  console.log("Hi From Listener #" + event.target.attributes.key.nodeValue);
+  booksContainer.innerHTML = "";
+  newArrayOfBooks = newArrayOfBooks.filter(
+    (b, i) => parseInt(event.target.attributes.key.nodeValue) !== i
+  );
+  newArrayOfBooks.forEach((book, index) => {
+    const html = `
+                <article class="display-container book-data">
+                    <ul>
+                    <li>${book.name}</li>
+                    <li>${Math.floor(
+                      Math.random() * (2023 - 1900 + 1) + 1900
+                    )}</li>
+                    <li>${book.price}$</li>
+                    <li>${book.author.name}</li>
+                    <li>${book.author.email}</li>
+                    <li>
+                        <img
+                        key=${index}
+                        class="edit-btn"
+                        title="edit"
+                        src="./images/icons/pen-bold.svg"
+                        alt=""
+                        /><img
+                        key =${index}
+                        class="delete-btn"
+                        title="remove"
+                        src="./images/icons/trash-bold.svg"
+                        alt=""
+                        />
+                    </li>
+                    </ul>
+                </article>
+            `;
+    booksContainer.insertAdjacentHTML("beforeend", html);
+  });
+  addEventListenersToAllDisplayButtons();
+  if (newArrayOfBooks.length === 0) {
+    displayComp.innerHTML = `<h1 style="text-align:center">Your Library is Empty! 📚</h1>`;
+  }
 }
 
 function confirmNumOfBooks() {
@@ -137,7 +176,7 @@ function addBook() {
       });
     }
 
-    console.log(arrayOfBooks);
+    // console.log(arrayOfBooks);
     addEventListenersToAllDisplayButtons();
   }
 }
@@ -153,44 +192,11 @@ addBookBtn.addEventListener("click", function () {
 
 function addEventListenersToAllDisplayButtons() {
   const btns = document.getElementsByClassName("delete-btn");
-  console.log(btns);
+  //   console.log(btns);
   for (let i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function (e) {
+      console.log(e.target);
       recreateDOM(e);
     });
   }
 }
-
-// booksContainer.innerHTML = "";
-// let newArrayOfBooks = arrayOfBooks.filter(
-//   (b, i) => parseInt(e.target.attributes.key.nodeValue) !== i
-// );
-// newArrayOfBooks.forEach((book, index) => {
-//   const html = `
-//             <article class="display-container book-data">
-//                 <ul>
-//                 <li>${book.name}</li>
-//                 <li>${Math.floor(Math.random() * (2023 - 1900 + 1) + 1900)}</li>
-//                 <li>${book.price}$</li>
-//                 <li>${book.author.name}</li>
-//                 <li>${book.author.email}</li>
-//                 <li>
-//                     <img
-//                     key=${index}
-//                     class="edit-btn"
-//                     title="edit"
-//                     src="./images/icons/pen-bold.svg"
-//                     alt=""
-//                     /><img
-//                     key =${index}
-//                     class="delete-btn"
-//                     title="remove"
-//                     src="./images/icons/trash-bold.svg"
-//                     alt=""
-//                     />
-//                 </li>
-//                 </ul>
-//             </article>
-//         `;
-//   booksContainer.insertAdjacentHTML("beforeend", html);
-// });
