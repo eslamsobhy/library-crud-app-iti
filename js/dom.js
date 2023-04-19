@@ -30,23 +30,46 @@ numOfBooksInput.focus();
 
 // methods
 function confirm(event) {
-  let bookNameValue = document.getElementById("edit-book-name").value;
-  let bookPriceValue = document.getElementById("edit-price").value;
-  let authorNameValue = document.getElementById("edit-author-name").value;
-  let authorEmailValue = document.getElementById("edit-author-email").value;
+  let bookNameValue = document.getElementById("edit-book-name");
+  let bookPriceValue = document.getElementById("edit-price");
+  let authorNameValue = document.getElementById("edit-author-name");
+  let authorEmailValue = document.getElementById("edit-author-email");
 
-  let index = event.target.getAttribute("key");
-  newArrayOfBooks.forEach((book, i) => {
-    if (index == i) {
-      book.name = bookNameValue;
-      book.price = bookPriceValue;
-      book.author.name = authorNameValue;
-      book.author.email = authorEmailValue;
-    }
-  });
-  booksContainer.innerHTML = "";
-  newArrayOfBooks.forEach((book, index) => {
-    const html = `
+  // Validating
+  if (!/^[A-Za-z]+([ ]?[A-Za-z]+)*$/.test(bookNameValue.value)) {
+    bookNameValue.style.outline = "2px solid red";
+    bookNameValue.focus();
+  } else if (!/^\d*\.?\d+$/.test(bookPriceValue.value)) {
+    bookNameValue.style.outline = "none";
+    bookPriceValue.style.outline = "2px solid red";
+    bookPriceValue.focus();
+  } else if (!/^[A-Za-z]+([ ]?[A-Za-z]+)*$/.test(authorNameValue.value)) {
+    bookPriceValue.style.outline = "none";
+    authorNameValue.style.outline = "2px solid red";
+    authorNameValue.focus();
+  } else if (
+    !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+      authorEmailValue.value
+    )
+  ) {
+    authorNameValue.style.outline = "none";
+    authorEmailValue.style.outline = "2px solid red";
+    authorEmailValue.focus();
+  } else {
+    authorEmailValue.style.outline = "none";
+
+    let index = event.target.getAttribute("key");
+    newArrayOfBooks.forEach((book, i) => {
+      if (index == i) {
+        book.name = bookNameValue.value;
+        book.price = bookPriceValue.value;
+        book.author.name = authorNameValue.value;
+        book.author.email = authorEmailValue.value;
+      }
+    });
+    booksContainer.innerHTML = "";
+    newArrayOfBooks.forEach((book, index) => {
+      const html = `
                 <article class="display-container book-data">
                     <ul>
                     <li>${book.name}</li>
@@ -74,11 +97,12 @@ function confirm(event) {
                     </ul>
                 </article>
             `;
-    booksContainer.insertAdjacentHTML("beforeend", html);
-  });
-  addEventListenersToAllDisplayButtons();
-  editComp.style.display = "none";
-  displayComp.style.display = "flex";
+      booksContainer.insertAdjacentHTML("beforeend", html);
+    });
+    addEventListenersToAllDisplayButtons();
+    editComp.style.display = "none";
+    displayComp.style.display = "flex";
+  }
 }
 
 function cancel() {
@@ -199,20 +223,14 @@ function confirmNumOfBooks() {
 
 function addBook() {
   // When the user add a book
-  if (
-    !/^[A-Za-z]+([A-Za-z]+)?\s[A-Za-z]+([A-Za-z]+)?$/.test(bookNameInput.value)
-  ) {
+  if (!/^[A-Za-z]+([ ]?[A-Za-z]+)*$/.test(bookNameInput.value)) {
     bookNameInput.style.outline = "2px solid red";
     bookNameInput.focus();
   } else if (!/^\d*\.?\d+$/.test(bookPriceInput.value)) {
     bookNameInput.style.outline = "none";
     bookPriceInput.style.outline = "2px solid red";
     bookPriceInput.focus();
-  } else if (
-    !/^[A-Za-z]+([A-Za-z]+)?\s[A-Za-z]+([A-Za-z]+)?$/.test(
-      authorNameInput.value
-    )
-  ) {
+  } else if (!/^[A-Za-z]+([ ]?[A-Za-z]+)*$/.test(authorNameInput.value)) {
     bookPriceInput.style.outline = "none";
     authorNameInput.style.outline = "2px solid red";
     authorNameInput.focus();
