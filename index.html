@@ -55,7 +55,7 @@
 
     <!-- Edit component -->
     <section class="edit section">
-      <h1>Edit Book #1</h1>
+      <h1>Edit Book #<span></span></h1>
       <article class="display-container header">
         <ul>
           <li>Name</li>
@@ -66,33 +66,7 @@
           <li>Operations</li>
         </ul>
       </article>
-      <article class="display-container book-data">
-        <ul>
-          <li><input id="edit-book-name" type="text" value="The Hobbit" /></li>
-          <li><input id="edit-publish-year" type="text" value="1978" /></li>
-          <li><input id="edit-price" type="text" value="120$" /></li>
-          <li>
-            <input id="edit-author-name" type="text" value="Ronald Tolken" />
-          </li>
-          <li>
-            <input id="edit-author-email" type="text" value="ronald@hehe.com" />
-          </li>
-          <li>
-            <img
-              id="confirm-edit"
-              title="confirm"
-              src="./images/icons/check-circle-bold.svg"
-              alt=""
-            />
-            <img
-              id="cancel-edit"
-              title="cancel"
-              src="./images/icons/x-circle-bold.svg"
-              alt=""
-            />
-          </li>
-        </ul>
-      </article>
+      <article class="edit-container"></article>
     </section>
     <script type="module" src="./js/dom.js"></script>
   </body>

@@ -12,6 +12,7 @@ const formComp = document.querySelector(".form-container");
 const displayComp = document.querySelector(".display-data");
 const booksContainer = document.querySelector(".books-container");
 const editComp = document.querySelector(".edit");
+const editContainer = document.querySelector(".edit-container");
 
 // inputs
 const numOfBooksInput = document.querySelector("#book-num");
@@ -28,6 +29,56 @@ const addBookBtn = document.querySelector(".add-book");
 numOfBooksInput.focus();
 
 // methods
+function editBook(event) {
+  let [book] = newArrayOfBooks.filter(
+    (book, index) => index == event.target.getAttribute("key")
+  );
+  const html = `
+    <article class="display-container book-data">
+        <ul>
+          <li><input id="edit-book-name" type="text" value="${
+            book.name
+          }" /></li>
+          <li><input id="edit-publish-year" type="text" value=${Math.floor(
+            Math.random() * (2023 - 1900 + 1) + 1900
+          )} /></li>
+          <li><input id="edit-price" type="text" value="${book.price}$" /></li>
+          <li>
+            <input id="edit-author-name" type="text" value="${
+              book.author.name
+            }" />
+          </li>
+          <li>
+            <input id="edit-author-email" type="text" value=${
+              book.author.email
+            } />
+          </li>
+          <li>
+            <img
+              key=${event.target.getAttribute("key")}
+              id="confirm-edit"
+              title="confirm"
+              src="./images/icons/check-circle-bold.svg"
+              alt=""
+            />
+            <img
+              key=${event.target.getAttribute("key")}
+              id="cancel-edit"
+              title="cancel"
+              src="./images/icons/x-circle-bold.svg"
+              alt=""
+            />
+          </li>
+        </ul>
+      </article>
+  `;
+  displayComp.style.display = "none";
+  editComp.style.display = "block";
+  editContainer.innerHTML = html;
+  document.querySelector(".edit h1 span").innerHTML =
+    parseInt(event.target.getAttribute("key")) + 1;
+}
+
 function recreateDOM(event) {
   booksContainer.innerHTML = "";
   newArrayOfBooks = newArrayOfBooks.filter(
@@ -191,12 +242,14 @@ addBookBtn.addEventListener("click", function () {
 });
 
 function addEventListenersToAllDisplayButtons() {
-  const btns = document.getElementsByClassName("delete-btn");
-  //   console.log(btns);
-  for (let i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", function (e) {
-      console.log(e.target);
+  const deleteBtns = document.getElementsByClassName("delete-btn");
+  const editBtns = document.getElementsByClassName("edit-btn");
+  for (let i = 0; i < deleteBtns.length; i++) {
+    deleteBtns[i].addEventListener("click", function (e) {
       recreateDOM(e);
+    });
+    editBtns[i].addEventListener("click", function (e) {
+      editBook(e);
     });
   }
 }
