@@ -29,6 +29,60 @@ const addBookBtn = document.querySelector(".add-book");
 numOfBooksInput.focus();
 
 // methods
+function confirm(event) {
+  let bookNameValue = document.getElementById("edit-book-name").value;
+  let bookPriceValue = document.getElementById("edit-price").value;
+  let authorNameValue = document.getElementById("edit-author-name").value;
+  let authorEmailValue = document.getElementById("edit-author-email").value;
+
+  let index = event.target.getAttribute("key");
+  newArrayOfBooks.forEach((book, i) => {
+    if (index == i) {
+      book.name = bookNameValue;
+      book.price = bookPriceValue;
+      book.author.name = authorNameValue;
+      book.author.email = authorEmailValue;
+    }
+  });
+  booksContainer.innerHTML = "";
+  newArrayOfBooks.forEach((book, index) => {
+    const html = `
+                <article class="display-container book-data">
+                    <ul>
+                    <li>${book.name}</li>
+                    <li>${Math.floor(
+                      Math.random() * (2023 - 1900 + 1) + 1900
+                    )}</li>
+                    <li>${book.price}$</li>
+                    <li>${book.author.name}</li>
+                    <li>${book.author.email}</li>
+                    <li>
+                        <img
+                        key=${index}
+                        class="edit-btn"
+                        title="edit"
+                        src="./images/icons/pen-bold.svg"
+                        alt=""
+                        /><img
+                        key =${index}
+                        class="delete-btn"
+                        title="remove"
+                        src="./images/icons/trash-bold.svg"
+                        alt=""
+                        />
+                    </li>
+                    </ul>
+                </article>
+            `;
+    booksContainer.insertAdjacentHTML("beforeend", html);
+  });
+  addEventListenersToAllDisplayButtons();
+  editComp.style.display = "none";
+  displayComp.style.display = "flex";
+}
+
+function cancel(event) {}
+
 function editBook(event) {
   let [book] = newArrayOfBooks.filter(
     (book, index) => index == event.target.getAttribute("key")
@@ -77,6 +131,7 @@ function editBook(event) {
   editContainer.innerHTML = html;
   document.querySelector(".edit h1 span").innerHTML =
     parseInt(event.target.getAttribute("key")) + 1;
+  addEventListenersToTheEditButtons();
 }
 
 function recreateDOM(event) {
@@ -252,4 +307,16 @@ function addEventListenersToAllDisplayButtons() {
       editBook(e);
     });
   }
+}
+
+function addEventListenersToTheEditButtons() {
+  const confirmBtn = document.getElementById("confirm-edit");
+  const cancelBtn = document.getElementById("cancel-edit");
+  confirmBtn.addEventListener("click", function (e) {
+    confirm(e);
+  });
+
+  cancelBtn.addEventListener("click", function (e) {
+    cancel(e);
+  });
 }
