@@ -81,7 +81,10 @@ function confirm(event) {
   displayComp.style.display = "flex";
 }
 
-function cancel(event) {}
+function cancel() {
+  editComp.style.display = "none";
+  displayComp.style.display = "flex";
+}
 
 function editBook(event) {
   let [book] = newArrayOfBooks.filter(
@@ -96,7 +99,7 @@ function editBook(event) {
           <li><input id="edit-publish-year" type="text" value=${Math.floor(
             Math.random() * (2023 - 1900 + 1) + 1900
           )} /></li>
-          <li><input id="edit-price" type="text" value="${book.price}$" /></li>
+          <li><input id="edit-price" type="text" value="${book.price}" /></li>
           <li>
             <input id="edit-author-name" type="text" value="${
               book.author.name
@@ -316,7 +319,7 @@ function addEventListenersToTheEditButtons() {
     confirm(e);
   });
 
-  cancelBtn.addEventListener("click", function (e) {
-    cancel(e);
+  cancelBtn.addEventListener("click", function () {
+    cancel();
   });
 }
